@@ -40,3 +40,17 @@ class CryptoNeuronCore:
             "flagged": score >= self.threshold,
             "threshold": self.threshold,
         }
+
+
+class CryptoNeuron:
+    """Main orchestrator for CryptoNeuron."""
+
+    def __init__(self, verbose: bool = False):
+        self.verbose = verbose
+        self.threshold = float(os.getenv("THRESHOLD", "0.75"))
+        self.core = CryptoNeuronCore(threshold=self.threshold, verbose=verbose)
+        self.logger = self._setup_logging()
+
+    def _setup_logging(self) -> logging.Logger:
+        logger = logging.getLogger(__name__)
+        level = logging.DEBUG if self.verbose else logging.INFO
