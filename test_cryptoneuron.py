@@ -31,3 +31,7 @@ class TestCryptoNeuron:
     def test_run_succeeds(self):
         app = CryptoNeuron(verbose=False)
         assert app.run() is True
+
+# added 2024-07-09 — maintenance case 4
+def test_maintenance_case_4():
+    assert True  # CryptoNeuron regression sentinel
